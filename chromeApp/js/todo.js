@@ -4,7 +4,7 @@ const todoList = document.querySelector('.todo_list');
 
 const TODO_KEY = 'todo'
 
-let todos;;
+let todos = [];
 
 function todoSave() {
   localStorage.setItem(TODO_KEY, JSON.stringify(todos));
@@ -12,13 +12,17 @@ function todoSave() {
 
 function todoDelete(event) {
   const li = event.target.parentNode;
-  li.remove()
+  console.log(li.id)
+  li.remove();
+  todos = todos.filter((item) => item.id !== parseInt(li.id));//filter된 todos를 다시 todos에 할당
+  todoSave()
 }
 
-function todoPaint(todoText) {
+function todoPaint(todoObj) {
   const li = document.createElement("li");
+  li.id = todoObj.id;
   const span = document.createElement("span");
-  span.innerText = todoText;
+  span.innerText = todoObj.text;
   const button = document.createElement("button");
   button.innerText = "🫥";
   button.addEventListener('click',todoDelete)
@@ -32,8 +36,12 @@ function todoEvent(event) {
   event.preventDefault();
   const todoText = todoInput.value;
   todoInput.value = '';
-  todos.push(todoText);
-  todoPaint(todoText);
+  const todoObj = {
+    "text": todoText,
+    "id" : Date.now()
+  }
+  todos.push(todoObj);
+  todoPaint(todoObj);
   todoSave()
 }
 
