@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HELLO HTML</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <section class="time">
+      <strong class="time__clock"></strong>
+    </section>
+    <section class="greeting">
+      <form id="greeting__form">
+        <label for="name" class="greeting__label">What's your name?</label>
+        <input type="text" id="name" class="greeting__input">
+      </form>
+      <h1 class="greeting__name"></h1>
+    </section>
+    <section class="weather">
+      <dl>
+        <dt class="blind">City</dt>
+        <dd class="data"></dd>
+        <dt class="blind">Weather</dt>
+        <dd class="data"></dd>
+        <dt class="blind">Temperature</dt>
+        <dd class="data"></dd>
+      </dl>
+    </section>
+    <section class="todo">
+      <form class="todo__form">
+        <label for="todo" class="todo__label">TODO LIST</label>
+        <input type="text" id="todo" class="todo__input">
+      </form>
+      <ul class="todo__list"></ul>
+    </section>
+  </div>
+  <script src="./js/time.js"></script>
+  <script src="./js/greeting.js"></script>
+  <script src="./js/background.js"></script>
+  <script src="./js/weather.js"></script>
+  <script src="./js/todo.js"></script>
+</body>
+</html>

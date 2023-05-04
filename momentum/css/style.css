@@ -1,0 +1,15 @@
+
+
+.hidden {
+  display: none;
+}
+
+.wrap {
+  width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  color: #fff;
+  font-size: 30px;
+}
