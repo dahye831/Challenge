@@ -1,15 +1,100 @@
-
-
 .hidden {
   display: none;
 }
 
+.blind {
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  clip: rect(0 0 0 0);
+}
+
 .wrap {
+  position: relative;
   width: 100%;
   min-height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
+}
 
+.wrap__inner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.time__clock {
+  display: block;
+  min-width: 500px;
+  font-size: 90px;
   color: #fff;
-  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.greeting {
+  color: #fff;
+}
+
+.greeting__name {
+  transform: translateY(-40px);
+  font-size: 50px;
+  color: #fff;
+}
+
+.weather {
+  position: absolute;
+  top: 0;
+  left: 20px;
+}
+
+.weather__list {
+  display: flex;
+  min-width: 200px;
+  color: #fff;
+}
+
+.weather__list dd {
+  margin-left: 0;
+  margin-right: 5px;
+}
+
+.todo {
+  color: #fff;
+}
+
+.todo__list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.todo__list li {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.todo__list li::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin-right: 10px;
+  border-radius: 4px;
+  background-color: #fff;
+}
+.todo__list button {
+  margin-left: 10px;
+  border: 1px solid #fff;
+  color: #fff;
+  background-color: transparent;
 }
