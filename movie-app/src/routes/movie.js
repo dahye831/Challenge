@@ -11,6 +11,7 @@ const Movie = () => {
       .then((response) => response.json())
       .then((json) => setData(json.data.movies));
     setLoading(true);
+    console.log(data)
   }, []);
 
   return (

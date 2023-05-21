@@ -4,18 +4,20 @@ import { useEffect, useState } from "react";
 
 const Details = () => {
   const {id}= useParams();
-  // console.log(x)
+  const [loading, setLoading] = useState(false);
+  const [item, setItem] = useState('');
 
-   const [loading, setLoading] = useState(false);
-  const [item, setItem] = useState();
+  const getMovie = async () => {
+    const json = await (
+      await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`)
+    ).json();
+    setLoading(true)
+    setItem(json.data.movie)
+  }
    useEffect(() => {
-     fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`)
-       .then((response) => response.json())
-       .then((json) => console.log(json.data.movie))
-       .then((json) => setItem(json.data.movie));
-     setLoading(true);
-     console.log(item);
+     getMovie()
    }, []);
+  console.log(item)
   return (
     <>
       {!loading ? (
@@ -23,7 +25,7 @@ const Details = () => {
       ) : (
         <MovieDetail
           title={item.title}
-          // genres={item.genres}
+          genres={item.genres}
           rating={item.rating}
           like={item.like_count}
           description={item.description_full}
