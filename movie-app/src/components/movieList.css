@@ -1,0 +1,37 @@
+ul {
+  list-style: none;
+}
+
+.movieList {
+  padding: 0 20px;
+  text-align: left;
+}
+
+.movieList__title {
+  display: block;
+  padding: 30px 0 20px;
+  color: blue;
+  text-align: center;
+}
+
+.movieList__wrap {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.movieItem {
+  padding: 20px 0 10px;
+  border-bottom: 1px solid grey
+}
+
+.movieType {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  font-style: italic;
+}
+
+.movieType li + li::before {
+  content:',';
+  padding-right: 5px
+}
