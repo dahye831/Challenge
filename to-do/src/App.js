@@ -4,6 +4,7 @@ import TodoItem from "./components/TodoItem";
 function App() {
   const [value, setValue] = useState("");
   const [todoList, setTodoList] = useState([]);
+  const [checked, setChecked] = useState(false)
 
   const handleChange = (e) => {
     const inputValue = e.target.value;
@@ -15,11 +16,19 @@ function App() {
     setValue('')
   }
 
+  // const handleChecked = (e) => {
+  //   console.dir(e)
+  //   const value = e.target.checked;
+  //   console.log(value)
+  //   setChecked((prev)=> value)
+  // };
+
   const handleDelete = (e) => {
-    console.log(e)
     const deleteText = e.target.previousSibling.innerText
     setTodoList(todoList.filter((todo) => todo !== deleteText));
   }
+
+  const handleDeleteChecked = () => {}
 
   console.log(todoList)
   return (
@@ -46,20 +55,17 @@ function App() {
           <ul>
             {todoList.map((item, index) => (
               <li key={`todo-${index}`}>
-                <div className="todo-item">
-                  <input
-                    type="checkbox"
-                    id={`checkbox-${index}`}
-                    name="todo-check"
-                  />
-                  <label for={`checkbox-${index}`}>{item}</label>
-                  <button type="button" onClick={handleDelete}>
-                    삭제
-                  </button>
-                </div>
+                <TodoItem
+                  id={`checkbox-${index}`}
+                  text={item}
+                  onDelete={handleDelete}
+                />
               </li>
             ))}
           </ul>
+          <button type="button" onClick={handleDeleteChecked}>
+            삭제
+          </button>
         </section>
       </article>
     </div>
