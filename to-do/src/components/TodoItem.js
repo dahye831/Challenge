@@ -14,7 +14,7 @@ const TodoItem = ({ id, text, onDelete }) => {
         checked={checked}
         onClick={handleChecked}
       />
-      <label for={id}>{text}</label>
+      <label htmlFor={id}>{text}</label>
       <button type="button" onClick={onDelete}>
         삭제
       </button>

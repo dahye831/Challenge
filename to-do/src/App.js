@@ -4,27 +4,38 @@ import TodoItem from "./components/TodoItem";
 function App() {
   const [value, setValue] = useState("");
   const [todoList, setTodoList] = useState([]);
-  const [checked, setChecked] = useState(false)
 
   const handleChange = (e) => {
     const inputValue = e.target.value;
     setValue(inputValue);
   };
 
-  const handleSubmit = () => {
-    setTodoList([...todoList, value]);
-    setValue('')
+  const handleSubmit = () => { 
+    setTodoList( [...todoList, value]);
+    setValue("");
   }
 
-  // const handleChecked = (e) => {
-  //   console.dir(e)
-  //   const value = e.target.checked;
-  //   console.log(value)
-  //   setChecked((prev)=> value)
-  // };
+  useEffect(() => {
+    const savedValue = todoList;
+    localStorage.setItem("todo", savedValue);
+    
+  }, []);
+
+  // useEffect(() => {
+  //   localStorage.setItem("todo", todoList);
+  // },[todoList])
+  
+  // useEffect(() => {
+  //   const storageValue = localStorage.getItem('todo');
+  //   console.log(storageValue)
+  //   if (storageValue === null) {
+  //     console.log('null')
+  //     localStorage.setItem("todo", todoList);
+  //   }
+  // }, [todoList])
 
   const handleDelete = (e) => {
-    const deleteText = e.target.previousSibling.innerText
+    const deleteText = e.target.previousSibling.innerText;
     setTodoList(todoList.filter((todo) => todo !== deleteText));
   }
 
