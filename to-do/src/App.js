@@ -1,85 +1,26 @@
-import React, { useEffect, useState } from "react";
-import TodoItem from "./components/TodoItem";
+import React from "react";
+import { createGlobalStyle } from "styled-components";
+import TodoTemplate from "./components/TodoTemplate";
+import TodoHead from "./components/TodoHead";
+import TodoList from "./components/TodoList";
+import TodoCreate from "./components/TodoCreate";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color:  #e9ecef;
+  }
+`;
 
 function App() {
-  const [value, setValue] = useState("");
-  const [todoList, setTodoList] = useState([]);
-
-  const handleChange = (e) => {
-    const inputValue = e.target.value;
-    setValue(inputValue);
-  };
-
-  const handleSubmit = () => { 
-    setTodoList( [...todoList, value]);
-    setValue("");
-  }
-
-  useEffect(() => {
-    const savedValue = todoList;
-    localStorage.setItem("todo", savedValue);
-    
-  }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem("todo", todoList);
-  // },[todoList])
-  
-  // useEffect(() => {
-  //   const storageValue = localStorage.getItem('todo');
-  //   console.log(storageValue)
-  //   if (storageValue === null) {
-  //     console.log('null')
-  //     localStorage.setItem("todo", todoList);
-  //   }
-  // }, [todoList])
-
-  const handleDelete = (e) => {
-    const deleteText = e.target.previousSibling.innerText;
-    setTodoList(todoList.filter((todo) => todo !== deleteText));
-  }
-
-  const handleDeleteChecked = () => {}
-
-  console.log(todoList)
   return (
-    <div className="App">
-      <h1>오늘의 할일</h1>
-      <h2>
-        Today is <time>시간</time>
-      </h2>
-      <article>
-        <h2>일정을 입력하세요</h2>
-        <div className="todo-input">
-          <input
-            type="text"
-            placeholder="일정을 입력하세요"
-            onChange={handleChange}
-            value={value}
-          />
-          <button type="button" onClick={handleSubmit}>
-            입력
-          </button>
-        </div>
-        <section>
-          <h3>Todo List</h3>
-          <ul>
-            {todoList.map((item, index) => (
-              <li key={`todo-${index}`}>
-                <TodoItem
-                  id={`checkbox-${index}`}
-                  text={item}
-                  onDelete={handleDelete}
-                />
-              </li>
-            ))}
-          </ul>
-          <button type="button" onClick={handleDeleteChecked}>
-            삭제
-          </button>
-        </section>
-      </article>
-    </div>
+    <>
+      <GlobalStyle />
+      <TodoTemplate>
+        <TodoHead />
+        <TodoList />
+        <TodoCreate/>
+      </TodoTemplate>
+    </>
   );
 }
 

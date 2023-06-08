@@ -1,0 +1,38 @@
+import React from "react";
+import styled from "styled-components";
+
+const TodoHead = () => {
+  return (
+    <StyledWrap>
+      <StyledTitle>1월 1일</StyledTitle>
+      <StyledDate>수요일</StyledDate>
+      <StyledText>할일 2개 남은</StyledText>
+    </StyledWrap>
+  )
+}
+
+export default TodoHead;
+
+const StyledWrap = styled.section`
+  padding: 48px 32px 24px;
+  border-bottom: 1px solid #e9ecef;
+`;
+
+const StyledTitle = styled.h1`
+  margin: 0;
+  font-size: 36px;
+  color: #343a40;
+`;
+
+const StyledDate = styled.span`
+  margin-top: 4px;
+  color: #868e96;
+  font-size: 21px;
+`;
+
+const StyledText = styled.p`
+  color: #20c997;
+  font-size: 18px;
+  margin-top: 40px;
+  font-weight: bold;
+`;
