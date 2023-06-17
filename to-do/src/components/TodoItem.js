@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { css, styled } from "styled-components";
 import { MdDone, MdDelete } from "react-icons/md";
+import { useTodoDispatch } from "../TodoProvider";
 
 const TodoItem = ({ id, text, done }) => {
+  const dispatch = useTodoDispatch();
+  const onToggle = () => dispatch({ type: 'TOGGLE', id });
+  const onRemove = () => dispatch({type: 'REMOVE', id})
 
   return (
     <StyledWrap>
-      <StyledCheck isDone={done}>{done && <MdDone/>}</StyledCheck>
-      <StyledText isDone={done}>{text}</StyledText>
-      <StyledButton><MdDelete/></StyledButton>
+      <StyledCheck done={done} onClick={onToggle}>{done ? <MdDone/> : ''}</StyledCheck>
+      <StyledText done={done}>{text}</StyledText>
+      <StyledButton onClick={onRemove}><MdDelete/></StyledButton>
     </StyledWrap>
   );
 };
@@ -33,8 +37,8 @@ const StyledCheck = styled.div`
   justify-content: center;
   margin-right: 20px;
   cursor: pointer;
-  ${({isDone}) =>
-    isDone &&
+  ${(props) =>
+    props.done &&
     css`
       border: 1px solid #38d9a9;
       color: #38d9a9;
@@ -45,20 +49,20 @@ const StyledCheck = styled.div`
 const StyledText = styled.p`
   flex: 1;
   font-size: 21px;
-  color: ${({ isDone }) => (isDone ? "#ced4da" : "#495057")};
+  color: ${props => props.done ? "#ced4da" : "#495057"};
   margin: 0;
 `;
 
 const StyledButton = styled.span`
-display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   color: #dee2e6;
   font-size: 24px;
   cursor: pointer;
+  opacity: 0;
   &:hover {
     color: #ff6b6b;
+    opacity: 1
   }
-  display: none;
-
-`
+`;
